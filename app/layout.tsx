@@ -5,8 +5,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "FU One Note!",
-  description: "Why do we need to add new lines and spaces at the end of each line?",
+  title: "Microsoft One Note ENV Cleanning",
+  description: "Do you have trouble copying ENV values from Microsoft OneNote? Use our tool.",
 };
 
 export default function RootLayout({

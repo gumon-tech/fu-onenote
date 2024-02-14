@@ -71,9 +71,9 @@ export default function Home() {
       <textarea
             id="sourceText"
             name="sourceText"
-            placeholder="FK Source"
+            placeholder="Source from One Note. Copy and paste here!"
             // rows={50}
-            className="border rounded-lg p-2 h-screen w-3/6"
+            className="border rounded-lg p-2 h-screen w-3/6 text-black"
             value={sourceText}
             // defaultValue={sourceText}
             onChange={(e)=>setSourceText(e.target.value)}
@@ -83,8 +83,8 @@ export default function Home() {
             id="cleanText"
             name="cleanText"
             // rows={50}
-            placeholder="Clean ENV"
-            className="border rounded-lg p-2 h-screen w-3/6"
+            placeholder="Cleaned ENV"
+            className="border rounded-lg p-2 h-screen w-3/6 text-black"
             value={cleanText}
             // defaultValue={cleanText}
             onChange={(e)=>console.log(e.target.value)}
