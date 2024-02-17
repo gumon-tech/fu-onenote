@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Microsoft One Note ENV Cleanning</title>
+    <meta
+      name="description"
+      content="Do you have trouble copying ENV values from Microsoft OneNote? Use our tool!"
+    />
+    <!-- Set Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <main class="flex min-h-screen flex-col items-center">
+      <div class="flex w-full">
+        <textarea
+          id="sourceText"
+          name="sourceText"
+          placeholder="Source from One Note. Copy and paste here!"
+          class="border rounded-lg p-2 h-screen w-3/6 text-black"
+          onchange="sourceTextHandler(this)"
+        ></textarea>
+        <textarea
+          id="cleanText"
+          name="cleanText"
+          placeholder="Cleaned ENV"
+          class="border rounded-lg p-2 h-screen w-3/6 text-black"
+        ></textarea>
+      </div>
+    </main>
+    <script>
+      const handleCopy = (cleanedText) => {
+        navigator.clipboard
+          .writeText(cleanedText)
+          .then(() => {
+            console.log("Cleaned Text copied to clipboard");
+            alert("Cleaned Text copied to clipboard");
+          })
+          .catch((err) => {
+            console.error("Error copying text:", err);
+          });
+      };
+
+      function removeEmptyLinesAndTrim(text) {
+        // Split text into lines
+        var lines = text.split("\n");
+
+        // Remove empty lines, trim whitespace from each line, and add empty line above lines containing '#'
+        var filteredLines = [];
+        lines.forEach(function (line, index) {
+          // Remove leading and trailing whitespace from each line
+          var trimmedLine = line.trim();
+          // Check if the line is not empty after trimming
+          if (trimmedLine.length > 0) {
+            if (trimmedLine.includes("#") && index !== 0) {
+              filteredLines.push("");
+            }
+            filteredLines.push(trimmedLine);
+          }
+        });
+        var result = filteredLines.join("\n");
+
+        return result;
+      }
+
+      const sourceTextHandler = (e) => {
+        const cleanedText = removeEmptyLinesAndTrim(e.value);
+        handleCopy(cleanedText);
+        document.getElementById("cleanText").value = cleanedText;
+      };
+    </script>
+  </body>
+</html>
